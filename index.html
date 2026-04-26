@@ -1,227 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-</head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Akash Tyagi – Java Developer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0f0f0f;color:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 4rem;background:rgba(15,15,15,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.07)}
+.logo{font-size:1.4rem;font-weight:700;background:linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:.9rem;color:rgba(255,255,255,0.6);transition:color .2s}
+.nav-links a:hover{color:#fff}
 
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(255,107,107,.18) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(77,150,255,.18) 0%,transparent 60%),radial-gradient(ellipse at 60% 80%,rgba(107,203,119,.12) 0%,transparent 60%)}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:float 6s ease-in-out infinite}
+.blob1{width:400px;height:400px;background:#ff6b6b22;top:-100px;left:-100px;animation-delay:0s}
+.blob2{width:300px;height:300px;background:#4d96ff22;bottom:-50px;right:-50px;animation-delay:2s}
+.blob3{width:250px;height:250px;background:#ffd93d22;top:40%;left:60%;animation-delay:4s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:.4rem 1.2rem;font-size:.8rem;color:rgba(255,255,255,0.7);margin-bottom:1.5rem;letter-spacing:.05em}
+.hero h1{font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:1;margin-bottom:1rem}
+.grad-text{background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#cc5de8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.2rem;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:linear-gradient(135deg,#ff6b6b,#ff8e53);color:#fff;padding:.85rem 2.2rem;border-radius:999px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,107,.4)}
+.btn-outline{background:transparent;color:#fff;padding:.85rem 2.2rem;border-radius:999px;font-size:1rem;font-weight:600;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.07)}
+.scroll-hint{margin-top:4rem;font-size:.8rem;color:rgba(255,255,255,0.3);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.arrow{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);animation:scrollDown 1.5s ease-in-out infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+section{padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.35rem 1rem;border-radius:999px;margin-bottom:1rem}
+.tag-pink{background:rgba(204,93,232,.15);color:#cc5de8;border:1px solid rgba(204,93,232,.3)}
+.tag-blue{background:rgba(77,150,255,.15);color:#4d96ff;border:1px solid rgba(77,150,255,.3)}
+.tag-green{background:rgba(107,203,119,.15);color:#6bcb77;border:1px solid rgba(107,203,119,.3)}
+.tag-amber{background:rgba(255,217,61,.15);color:#ffd93d;border:1px solid rgba(255,217,61,.3)}
+.tag-red{background:rgba(255,107,107,.15);color:#ff6b6b;border:1px solid rgba(255,107,107,.3)}
+h2.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:.5rem}
+p.section-desc{color:rgba(255,255,255,0.5);font-size:1.05rem;line-height:1.7;max-width:560px;margin-bottom:3rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center}
+.about-avatar{width:220px;height:220px;border-radius:2rem;overflow:hidden;border:3px solid rgba(255,255,255,0.1);flex-shrink:0}
+.about-avatar img{width:100%;height:100%;object-fit:cover}
+.about-text p{color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:1rem}
+.vibes{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.vibe{padding:.35rem .9rem;border-radius:999px;font-size:.8rem;font-weight:600}
+.v1{background:rgba(255,107,107,.12);color:#ff6b6b;border:1px solid rgba(255,107,107,.3)}
+.v2{background:rgba(255,217,61,.12);color:#ffd93d;border:1px solid rgba(255,217,61,.3)}
+.v3{background:rgba(107,203,119,.12);color:#6bcb77;border:1px solid rgba(107,203,119,.3)}
+.v4{background:rgba(77,150,255,.12);color:#4d96ff;border:1px solid rgba(77,150,255,.3)}
+.v5{background:rgba(204,93,232,.12);color:#cc5de8;border:1px solid rgba(204,93,232,.3)}
+.stat-row{display:flex;gap:2rem;margin-top:2rem}
+.stat-num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#ff6b6b,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:.8rem;color:rgba(255,255,255,0.4)}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr}.about-avatar{width:160px;height:160px;margin:0 auto}}
+
+/* EXPERIENCE TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#ff6b6b,#ffd93d,#4d96ff)}
+.tl-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem}
+.tl-dot{position:absolute;left:-2.45rem;top:.35rem;width:14px;height:14px;border-radius:50%;border:2px solid;background:#0f0f0f}
+.tl-dot.d1{border-color:#ff6b6b;box-shadow:0 0 10px rgba(255,107,107,.5)}
+.tl-dot.d2{border-color:#ffd93d;box-shadow:0 0 10px rgba(255,217,61,.4)}
+.tl-company{font-size:1.15rem;font-weight:700;margin-bottom:.25rem}
+.tl-role{font-size:.9rem;color:rgba(255,255,255,0.5);margin-bottom:.5rem}
+.tl-period{display:inline-block;font-size:.75rem;font-weight:600;padding:.2rem .7rem;border-radius:999px;margin-bottom:.7rem}
+.tp1{background:rgba(255,107,107,.12);color:#ff6b6b;border:1px solid rgba(255,107,107,.3)}
+.tp2{background:rgba(255,217,61,.12);color:#ffd93d;border:1px solid rgba(255,217,61,.3)}
+.tl-desc{color:rgba(255,255,255,0.55);font-size:.92rem;line-height:1.7}
+
+/* SKILLS */
+.skills-wrap{display:flex;flex-wrap:wrap;gap:.75rem}
+.skill-pill{padding:.55rem 1.3rem;border-radius:999px;font-size:.9rem;font-weight:600;border:1.5px solid;transition:transform .2s}
+.skill-pill:hover{transform:translateY(-3px)}
+.s1{color:#ff6b6b;border-color:rgba(255,107,107,.4);background:rgba(255,107,107,.08)}
+.s2{color:#ffd93d;border-color:rgba(255,217,61,.4);background:rgba(255,217,61,.08)}
+.s3{color:#6bcb77;border-color:rgba(107,203,119,.4);background:rgba(107,203,119,.08)}
+.s4{color:#4d96ff;border-color:rgba(77,150,255,.4);background:rgba(77,150,255,.08)}
+.s5{color:#cc5de8;border-color:rgba(204,93,232,.4);background:rgba(204,93,232,.08)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.project-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1.5rem;padding:2rem;transition:transform .2s,border-color .2s,background .2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.project-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.07)}
+.project-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:inherit}
+.pc1::before{background:linear-gradient(135deg,rgba(255,107,107,.1),transparent)}
+.pc2::before{background:linear-gradient(135deg,rgba(77,150,255,.1),transparent)}
+.pc3::before{background:linear-gradient(135deg,rgba(107,203,119,.1),transparent)}
+.pc4::before{background:linear-gradient(135deg,rgba(204,93,232,.1),transparent)}
+.project-card:hover::before{opacity:1}
+.project-icon{width:52px;height:52px;border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem}
+.pi1{background:rgba(255,107,107,.15)}
+.pi2{background:rgba(77,150,255,.15)}
+.pi3{background:rgba(107,203,119,.15)}
+.pi4{background:rgba(204,93,232,.15)}
+.project-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.project-card p{color:rgba(255,255,255,0.5);font-size:.88rem;line-height:1.65;margin-bottom:1.2rem;flex:1}
+.project-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:auto;font-size:.85rem;font-weight:600;padding:.5rem 1.2rem;border-radius:999px;border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);transition:all .2s;width:fit-content}
+.project-link:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,0.07)}
+
+/* CONTACT */
+.contact-section{background:linear-gradient(135deg,rgba(255,107,107,.08),rgba(77,150,255,.08));border:1px solid rgba(255,255,255,0.08);border-radius:2rem;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
+.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,217,61,.05) 0%,transparent 70%)}
+.contact-info{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0}
+.cinfo{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.5rem;border-radius:999px;border:1.5px solid rgba(255,255,255,0.15);font-size:.9rem;color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.04)}
+.cinfo a{color:inherit}
+
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);margin:0 2rem}
+footer{text-align:center;padding:2rem;font-size:.85rem;color:rgba(255,255,255,0.2);border-top:1px solid rgba(255,255,255,0.06)}
+</style>
+</head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:50px">
-        <a class="navbar-brand" href="#">Akash Tyagi</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#bio">Bio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#projects">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#skills">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-            </ul>
+<nav>
+  <div class="logo">Akash.java</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-badge">☕ Java Developer · Capgemini</div>
+    <h1><span class="grad-text">Akash Tyagi</span></h1>
+    <p class="hero-sub">Experienced Java Developer crafting robust, scalable backend systems — with 5.5+ years of turning complex problems into clean, efficient code.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Projects</button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+    </div>
+    <div class="scroll-hint"><span>scroll</span><div class="arrow"></div></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-avatar">
+        <img src="https://mrakashtyagi.github.io/photo.jpg" alt="Akash Tyagi" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,#ff6b6b,#4d96ff)\'>🧑‍💻</div>'"/>
+      </div>
+      <div class="about-text">
+        <span class="section-tag tag-pink">About Me</span>
+        <h2 class="section-title">Code by day, <span class="grad-text">cricket by heart</span></h2>
+        <p>Hey! I'm Akash — a passionate Java backend developer with 5.5+ years in the IT industry, spending 3.5+ years mastering Java and its ecosystem. I take pride in delivering high-quality, scalable, and maintainable applications.</p>
+        <p>Off the keyboard, I'm either glued to a cricket match (playing or watching — both count!), vibing to slow music in solitude, or out having a blast with friends. Life's too short to be boring!</p>
+        <div class="vibes">
+          <span class="vibe v1">🏏 Cricket Fanatic</span>
+          <span class="vibe v2">⚽ All-Sports Lover</span>
+          <span class="vibe v3">🎵 Slow Music Fan</span>
+          <span class="vibe v4">🎉 Party Person</span>
+          <span class="vibe v5">☕ Java Addict</span>
         </div>
-    </nav>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">5.5+</div><div class="stat-label">Years Exp.</div></div>
+          <div class="stat"><div class="stat-num">4</div><div class="stat-label">Live Projects</div></div>
+          <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Cricket Love</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="section-divider"></div>
 
-    <div class="container">
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <span class="section-tag tag-amber">Experience</span>
+    <h2 class="section-title">Where I've <span class="grad-text">made an impact</span></h2>
+    <p class="section-desc">A journey of growing one Java project at a time.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot d1"></div>
+        <div class="tl-company">Capgemini</div>
+        <div class="tl-role">Java Developer</div>
+        <span class="tl-period tp1">2021 – Present · 4+ Years</span>
+        <div class="tl-desc">Working on enterprise-level backend systems using Java, Spring Boot, Spring Data JPA and Spring JDBC. Delivering scalable microservices and RESTful APIs for government and global clients with a focus on clean, maintainable code and robust security standards.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot d2"></div>
+        <div class="tl-company">Abbie It Mart</div>
+        <div class="tl-role">Java Developer</div>
+        <span class="tl-period tp2">Before 2021</span>
+        <div class="tl-desc">Kickstarted my development career building Java-based applications including a full-stack Resource Management System with Spring Boot and Angular. Gained solid foundations in Spring Framework, database interactions, and backend engineering principles.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Projects -->
-        <section id="bio" class="my-5">
-            <h1>Bio</h1>
-            <div class="row">
-                <div class="col-lg-5 mb-4">
-                    <div class="card">
-                        <img src="photo.jpg" alt="profilepic">
-                    </div>
-                </div>
-                <div class="col-lg-7 mb-4">
-                    <div class="card">
-                        <p>I am a experienced Java Developer with a passion for crafting robust and efficient software solutions.
-                            With over 5.5 years of experience in the IT industry, I have spent 3.5 years honing my expertise in Java,
-                            becoming well-versed in its intricacies and best practices.
-                            <br>
-                            <br>
-                            My commitment to excellence is evident in the high-quality code I deliver, and I take pride in my ability to develop
-                            scalable and maintainable applications that meet business needs.
-                            <br>
-                            <br>
-                            Experienced Java Developer with a passion for crafting robust and efficient software solutions. With over 5.5 years of experience in the IT industry,
-                            I have spent 3.5 years honing my expertise in Java, becoming well-versed in its intricacies and best practices.
-                            My commitment to excellence is evident in the high-quality code I deliver,
-                            and I take pride in my ability to develop scalable and maintainable applications that meet business needs.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="section-divider"></div>
 
-        <!-- Projects -->
-        <section id="projects" class="my-5">
-            <h1>Projects</h1>
-            <div class="row">
-                <!-- Add as many projects as you like. Repeat this div -->
-                <div class="col-lg-3 mb-3">
-                    <div class="card">
-                        <!-- <img src="project3.jpg" class="card-img-top" alt="Project"> -->
-                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100">Project</div>
-                        <div class="card-body">
-                            <h5 class="card-title"> NIC Servicedesk(Service desk for NIC)</h5>
-                            <p class="card-text">
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <span class="section-tag tag-green">Projects</span>
+    <h2 class="section-title">Things I've <span class="grad-text">built &amp; shipped</span></h2>
+    <p class="section-desc">Real-world projects delivering value to government bodies, healthcare, and businesses.</p>
+    <div class="projects-grid">
 
-Successfully developed the Service Desk portal for NIC, providing a streamlined platform for IT service management and support.
-Implemented user-friendly interfaces and efficient backend processes to enhance service delivery and user satisfaction.
--Ensured robust security measures and compliance with industry standards.
-                            </p>
-                            <a href="https://servicedesk.nic.in/" target="_blank" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="project-card pc1">
+        <div class="project-icon pi1">🖥️</div>
+        <h3>NIC Servicedesk</h3>
+        <p>Developed the Service Desk portal for NIC (National Informatics Centre) — a streamlined platform for IT service management and support, with user-friendly interfaces, efficient backend processes, and robust security compliance.</p>
+        <a class="project-link" href="https://servicedesk.nic.in/" target="_blank">View Live →</a>
+      </div>
 
-                <div class="col-lg-3 mb-3">
-                    <div class="card">
-                        <!-- <img src="project4.jpg" class="card-img-top" alt="Project"> -->
-                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100">Project</div>
-                        <div class="card-body">
-                            <h5 class="card-title">NSD Chatbot Assistant </h5>
-                            <p class="card-text">This app predicts the score at the end of an innings based on current
-                                situation of the match. Try changing the input parameters and see the magic! Open for
-                                suggestions.</p>
-                            <a href="https://servicedesk.nic.in/chatbot/index.php?i=wcfzkdiyiyilmfeuhrdkgwypyxqtcnmp"
-                                target="_blank" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="project-card pc2">
+        <div class="project-icon pi2">🤖</div>
+        <h3>NSD Chatbot Assistant</h3>
+        <p>An intelligent chatbot assistant integrated into the NIC Service Desk platform, designed to guide users, handle queries, and improve overall support experience with smart automated responses.</p>
+        <a class="project-link" href="https://servicedesk.nic.in/chatbot/index.php?i=wcfzkdiyiyilmfeuhrdkgwypyxqtcnmp" target="_blank">View Live →</a>
+      </div>
 
-                <div class="col-lg-3 mb-3">
-                    <div class="card">
-                        <!-- <img src="project5.jpg" class="card-img-top" alt="Project"> -->
-                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100">Project</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Blood Bank Application </h5>
-                            <p class="card-text">I developed the Blood Bank Management System for the Faridabad Metropolitan Development Authority (FMDA). This application streamlines the management and distribution of blood resources across various blood banks. Key features include real-time inventory tracking, donor registration, and blood request management. The system enhances operational efficiency, ensuring timely availability of blood for patients.</p>
-                            <a href="https://fmda.haryana.gov.in/bloodbank/"
-                                target="_blank" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                  <div class="col-lg-3 mb-3">
-                    <div class="card">
-                        <!-- <img src="project4.jpg" class="card-img-top" alt="Project"> -->
-                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100">Project</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Resource Management System </h5>
-                            <p class="card-text">Technologies Used: Java Spring Boot, AngularDescription: Developed a comprehensive resource management system to streamline operations at BB Media. The system includes functionalities for tracking resources, optimizing allocation, and enhancing overall efficiency.Role: Full-stack DeveloperKey Achievements:Implemented a robust backend using Java Spring Boot.Designed an intuitive frontend with Angular for seamless user experience.Improved resource allocation and management processes.
-                            </p>
-                            <a href="https://rms.abbieit.com/" target="_blank" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="project-card pc3">
+        <div class="project-icon pi3">🩸</div>
+        <h3>Blood Bank Application</h3>
+        <p>Built for the Faridabad Metropolitan Development Authority (FMDA) — a system that streamlines blood bank management with real-time inventory tracking, donor registration, and blood request management across multiple facilities.</p>
+        <a class="project-link" href="https://fmda.haryana.gov.in/bloodbank/" target="_blank">View Live →</a>
+      </div>
 
-        <!-- Skills -->
-        <section id="skills" class="my-5">
-            <h1>Skills</h1>
-            <!-- Adjust the width of the inner div to reflect skill level -->
-            <div class="mb-3">
-                <div class="skills-name">Java</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                        aria-valuemax="100">60%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">Angular</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100">40%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">Git</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                        aria-valuemax="100">60%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">SQL</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100">60%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">Jira</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                        aria-valuemax="100">70%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">HTML</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-                        aria-valuemax="100">70%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">CSS</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100">50%</div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="skills-name">Spring MVC</div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                        aria-valuemax="100">70%</div>
-                </div>
-            </div>
-
-
-        </section>
-
-        <!-- Contact -->
-        <footer id="contact" class="my-5">
-            <h1>Contact Me</h1>
-            <form>
-                <div class="form-group">
-                    <label for="email"><a href="mailto:tyagiakash94@gmail.com">tyagiakash94@gmail.com</a></label>
-                    <label for="phone" class="bi bi-telephone-fill me-2">
-                        <a>+91 9650117110</a>
-                    </label>
-                </div>
-            </form>
-        </footer>
+      <div class="project-card pc4">
+        <div class="project-icon pi4">📦</div>
+        <h3>Resource Management System</h3>
+        <p>A comprehensive full-stack resource management system for BB Media built with Java Spring Boot and Angular. Features resource tracking, optimized allocation workflows, and an intuitive UI for seamless operational efficiency.</p>
+        <a class="project-link" href="https://rms.abbieit.com/" target="_blank">View Live →</a>
+      </div>
 
     </div>
+  </div>
+</section>
 
+<div class="section-divider"></div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <span class="section-tag tag-blue">Tech Stack</span>
+    <h2 class="section-title">My <span class="grad-text">Java arsenal</span></h2>
+    <p class="section-desc">Tools and technologies I use to build solid, scalable backends and deliver great software.</p>
+    <div class="skills-wrap">
+      <span class="skill-pill s1">Java</span>
+      <span class="skill-pill s1">Spring MVC</span>
+      <span class="skill-pill s1">Spring Boot</span>
+      <span class="skill-pill s2">Spring Data JPA</span>
+      <span class="skill-pill s2">Spring JDBC</span>
+      <span class="skill-pill s3">SQL</span>
+      <span class="skill-pill s3">Hibernate</span>
+      <span class="skill-pill s4">Angular</span>
+      <span class="skill-pill s4">HTML</span>
+      <span class="skill-pill s4">CSS</span>
+      <span class="skill-pill s5">Git</span>
+      <span class="skill-pill s5">Jira</span>
+      <span class="skill-pill s1">REST APIs</span>
+      <span class="skill-pill s2">Microservices</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-section">
+      <span class="section-tag tag-red">Contact</span>
+      <h2 class="section-title" style="margin-bottom:.75rem">Let's connect &amp; <span class="grad-text">build something great</span></h2>
+      <p style="color:rgba(255,255,255,0.5);font-size:1.05rem;max-width:440px;margin:0 auto 1.5rem;line-height:1.7;position:relative;z-index:1">Whether it's a Java project, a collaboration, or just talking cricket — I'm always up for a chat!</p>
+      <div class="contact-info" style="position:relative;z-index:1">
+        <div class="cinfo">✉ <a href="mailto:tyagiakash94@gmail.com">tyagiakash94@gmail.com</a></div>
+        <div class="cinfo">📞 <a href="tel:+919650117110">+91 9650117110</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built with ☕ &amp; 🏏 by Akash Tyagi · 2025</p>
+</footer>
+
 </body>
-
 </html>
